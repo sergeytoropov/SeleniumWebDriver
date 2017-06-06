@@ -13,6 +13,10 @@ import java.util.concurrent.TimeUnit;
 public class LiteCart {
     private final WebDriver driver;
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     public LiteCart(final WebDriver driver) {
         assert (driver != null);
 
@@ -22,25 +26,13 @@ public class LiteCart {
     }
 
     public WebElement loginForm() {
-        //return driver.findElement(By.id("box-login"));
-        return driver.findElement(By.xpath("//*[@id=\"box-login\"]"));
+        return driver.findElement(By.id("box-login"));
     }
 
     public void login() {
         loginForm().findElement(By.name("username")).sendKeys("admin");
         loginForm().findElement(By.name("password")).sendKeys("admin");
         loginForm().findElement(By.name("login")).click();
-
-        /**
-         * Вопрос!
-         *
-         * Почему когда я указыаю абсолютный путь до элемента он его не находит?
-         * Элемент видимый я его вижу на странице.
-         * Сверил путь (см. ниже) он правильный.
-         * driver.findElement(By.xpath("//*[@id=\"box-login\"]")); - так находит элемент
-         * driver.findElement(By.xpath("//*[@id=\"box-login\"]/form[@class=\"login-form\"]")); -а так нет.
-         */
-        //driver.findElement(By.xpath("//*[@id=\"box-login\"]/form[@class=\"login-form\"]/div[1]/table/tbody/tr[1]/td[2]/span/input")).sendKeys("admin");
     }
 }
 
