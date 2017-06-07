@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @since 02.06.17
  */
 public class LiteCart {
-    private final WebDriver driver;
+    protected final WebDriver driver;
 
     public WebDriver getDriver() {
         return driver;
@@ -21,7 +21,6 @@ public class LiteCart {
         assert (driver != null);
 
         this.driver = driver;
-        driver.get("http://localhost:8888/litecart/admin/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
@@ -30,6 +29,7 @@ public class LiteCart {
     }
 
     public void login() {
+        driver.get("http://localhost:8888/litecart/admin/");
         loginForm().findElement(By.name("username")).sendKeys("admin");
         loginForm().findElement(By.name("password")).sendKeys("admin");
         loginForm().findElement(By.name("login")).click();
