@@ -14,7 +14,7 @@ import java.util.List;
  * @since 07.06.17
  */
 public class EditCountryPage extends NavigationMenu {
-    public final String refCountry;
+    private final String refCountry;
 
     public EditCountryPage(final WebDriver driver, final String refCountry) {
         super(driver, false);
