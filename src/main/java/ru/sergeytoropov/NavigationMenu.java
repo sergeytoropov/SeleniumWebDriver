@@ -14,8 +14,14 @@ import java.util.List;
 public class NavigationMenu extends LiteCart {
 
     public NavigationMenu(final WebDriver webDriver) {
+        this(webDriver, true);
+    }
+
+    public NavigationMenu(final WebDriver webDriver, boolean isLogin) {
         super(webDriver);
-        login();
+        if (isLogin) {
+            login();
+        }
     }
 
     public static class MenuItem {
