@@ -7,7 +7,9 @@ Selenium 3 зависит от Java 1.8
 * Открыть страницу `get()` или `navigate.to()`. При этом всегда необходимо указывать
 протокол http(s).
 
-### Про Selenium и один «велосипед» [](https://habrahabr.ru/post/192742/)
+### [XPath, CSS, DOM and Selenium: The Rosetta Stone (В статье присутствуют два файл формате pdf с таблицами по работе XPath, CSS, DOM and Selenium) ](https://www.simple-talk.com/dotnet/net-framework/xpath-css-dom-and-selenium-the-rosetta-stone/)
+
+### [Про Selenium и один «велосипед» ](https://habrahabr.ru/post/192742/)
 
 Прочитал вашу статью, укрепился в своем мнении о подходах к тестированию Selenium:
 — У вас многостраничный сайт с простым взаимодействием? Не парьтесь, записывайте тесты средствами Selenium прямо в браузере. Проще перетцкать 5 ссылок и проверить что в DIV-е c определенным CSS классом есть нужный текст, чем цеплять PageObject и писать враппер. Даже если тест перестанет быть актуальным, все равно его проще перезаписать.
