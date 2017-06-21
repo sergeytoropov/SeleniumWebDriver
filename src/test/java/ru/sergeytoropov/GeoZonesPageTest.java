@@ -3,13 +3,11 @@ package ru.sergeytoropov;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author sergeytoropov
  * @since 08.06.17
  */
-public class GeoZonesPageTest extends Init{
+public class GeoZonesPageTest extends Init {
     private GeoZonesPage geoZonesPage;
 
     @Before

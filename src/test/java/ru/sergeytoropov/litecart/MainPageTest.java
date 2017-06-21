@@ -1,8 +1,9 @@
-package ru.sergeytoropov;
+package ru.sergeytoropov.litecart;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
+import ru.sergeytoropov.Init;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ public class MainPageTest extends Init {
 
     @Before
     public void init() {
-        mainPage= new MainPage(driver);
+        mainPage = new MainPage(driver);
     }
 
     private final String message = "Товар на главной странице содержит ноль или более одного стикера.";
@@ -39,5 +40,15 @@ public class MainPageTest extends Init {
         for (WebElement element: mainPage.getLatestProducts()) {
             assertTrue(message, mainPage.isOneSticker(mainPage.getSticker(element)));
         }
+    }
+
+    @Test
+    public void getNewCustomersClickHere() {
+        assertTrue(mainPage.getNewCustomersClickHere() != null);
+    }
+
+    @Test
+    public void openCreateAccountPage() {
+        mainPage.openCreateAccountPage();
     }
 }

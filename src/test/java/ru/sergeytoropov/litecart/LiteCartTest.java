@@ -1,9 +1,8 @@
-package ru.sergeytoropov;
+package ru.sergeytoropov.litecart;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import ru.sergeytoropov.Init;
 
 /**
  * @author sergeytoropov

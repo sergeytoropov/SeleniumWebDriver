@@ -16,6 +16,7 @@ public class StaticInit {
     static {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("http://localhost:8888/litecart/");
     }
 
     @AfterClass
