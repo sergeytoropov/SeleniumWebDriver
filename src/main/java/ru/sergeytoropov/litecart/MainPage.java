@@ -5,6 +5,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.sergeytoropov.exceptions.LiteCartException;
+import ru.sergeytoropov.litecart.elements.CheckoutElement;
+import ru.sergeytoropov.litecart.elements.HomeElement;
 
 import java.util.List;
 
@@ -13,8 +15,14 @@ import java.util.List;
  * @since 07.06.17
  */
 public class MainPage extends LiteCart {
+    public final HomeElement homeElement;
+    private final CheckoutElement checkoutElement;
+
     public MainPage(final WebDriver driver) {
         super(driver);
+        homeElement = new HomeElement(driver);
+        checkoutElement = new CheckoutElement(driver);
+
         //driver.get("http://localhost:8888/litecart/");
     }
 
@@ -131,5 +139,30 @@ public class MainPage extends LiteCart {
         setEmail(email);
         setPassword(password);
         getElementButtonLogin().click();
+    }
+
+    public ProductPage openFirstMostPopularProduct() {
+        for (WebElement element: getMostPopular()) {
+            element.click();
+            break;
+        }
+        ProductPage productPage = new ProductPage(driver);
+        if (productPage.isProductPage()) {
+            return productPage;
+        }
+        throw new LiteCartException("Страница с описанием продукта не открылась");
+    }
+
+    //
+    // Действия
+    //
+
+    public CartPage openCartPage() {
+        checkoutElement.click();
+        CartPage cartPage = new CartPage(driver);
+        if (cartPage.isCartPage()) {
+            return cartPage;
+        }
+        throw new LiteCartException("Страница корзины выбранных товаров не открылась");
     }
 }

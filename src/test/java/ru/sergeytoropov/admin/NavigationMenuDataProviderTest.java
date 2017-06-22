@@ -1,4 +1,4 @@
-package ru.sergeytoropov;
+package ru.sergeytoropov.admin;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ru.sergeytoropov.admin.NavigationMenu;
 
 import java.util.ArrayList;
 import java.util.List;

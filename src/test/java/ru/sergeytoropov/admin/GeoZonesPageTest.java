@@ -1,7 +1,9 @@
-package ru.sergeytoropov;
+package ru.sergeytoropov.admin;
 
 import org.junit.Before;
 import org.junit.Test;
+import ru.sergeytoropov.Init;
+import ru.sergeytoropov.admin.GeoZonesPage;
 
 /**
  * @author sergeytoropov

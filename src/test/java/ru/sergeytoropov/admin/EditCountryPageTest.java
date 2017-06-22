@@ -1,10 +1,13 @@
-package ru.sergeytoropov;
+package ru.sergeytoropov.admin;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.runner.RunWith;
 import org.junit.Test;
+import ru.sergeytoropov.StaticInit;
+import ru.sergeytoropov.admin.CountriesPage;
+import ru.sergeytoropov.admin.EditCountryPage;
 
 import java.util.ArrayList;
 import java.util.List;
