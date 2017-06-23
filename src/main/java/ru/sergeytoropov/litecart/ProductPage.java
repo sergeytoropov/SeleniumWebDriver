@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import ru.sergeytoropov.exceptions.LiteCartException;
 import ru.sergeytoropov.litecart.elements.HomeElement;
@@ -57,8 +58,11 @@ public class ProductPage extends LiteCart {
         return driver.findElement(By.xpath("//div[@id='cart']//span[@class='quantity']"));
     }
 
+    @FindBy(xpath = "//div[@id='cart']//span[@class='quantity']")
+    WebElement quantityInCart;
+
     public int getQuantityInCart() {
-        return Integer.parseInt(getElementQuanityInCart().getText());
+        return Integer.parseInt(quantityInCart.getText());
     }
 
     //
@@ -66,15 +70,16 @@ public class ProductPage extends LiteCart {
     //
 
     public void addProductInCart() {
-        int quantityInCart = getQuantityInCart();
+        int currentQuantityInCart = getQuantityInCart();
         if (isSize()) {
             setSize(sizeOptionValue[0]);
         }
         buttonAddToCart().click();
 
+        //TODO Заменить ExpectedConditions пока не понял как
         // Ждем десять секунд на изменения количества товаров в корзине
         for (int count = 0; count < 100; count++) {
-            if (quantityInCart != getQuantityInCart()) {
+            if (currentQuantityInCart!= getQuantityInCart()) {
                 return;
             }
             sleep(100);
