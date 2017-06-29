@@ -1,4 +1,4 @@
-package ru.sergeytoropov.scripts;
+package ru.sergeytoropov.scripts.litecart;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;

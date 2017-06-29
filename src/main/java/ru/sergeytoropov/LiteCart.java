@@ -1,4 +1,4 @@
-package ru.sergeytoropov.litecart;
+package ru.sergeytoropov;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

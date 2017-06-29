@@ -2,6 +2,7 @@ package ru.sergeytoropov.litecart;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import ru.sergeytoropov.LiteCart;
 import ru.sergeytoropov.exceptions.LiteCartException;
 
 /**

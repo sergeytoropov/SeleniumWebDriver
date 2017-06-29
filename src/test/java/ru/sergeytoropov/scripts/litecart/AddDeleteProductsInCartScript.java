@@ -1,4 +1,4 @@
-package ru.sergeytoropov.scripts;
+package ru.sergeytoropov.scripts.litecart;
 
 import org.junit.Before;
 import org.junit.Test;

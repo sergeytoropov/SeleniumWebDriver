@@ -3,6 +3,7 @@ package ru.sergeytoropov.litecart;
 import org.junit.Before;
 import org.junit.Test;
 import ru.sergeytoropov.Init;
+import ru.sergeytoropov.LiteCart;
 
 /**
  * @author sergeytoropov

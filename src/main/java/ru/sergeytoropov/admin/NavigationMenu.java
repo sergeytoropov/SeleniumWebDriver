@@ -3,7 +3,7 @@ package ru.sergeytoropov.admin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import ru.sergeytoropov.litecart.LiteCart;
+import ru.sergeytoropov.LiteCart;
 
 import java.util.ArrayList;
 import java.util.List;

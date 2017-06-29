@@ -5,7 +5,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.sergeytoropov.LiteCart;
 
 import java.util.List;
 
@@ -69,5 +71,7 @@ public class CartPage extends LiteCart {
             button.click();
             wait.until(ExpectedConditions.stalenessOf(product));
         }
+
+        ExpectedCondition s;
     }
 }
