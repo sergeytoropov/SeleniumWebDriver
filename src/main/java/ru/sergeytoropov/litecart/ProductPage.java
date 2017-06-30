@@ -107,16 +107,17 @@ public class ProductPage extends LiteCart {
 
     public Product getProductInfo() {
         String name = boxProduct.findElement(By.xpath(".//h1[@class='title']")).getText();
+
         // акционная цена крупнее, чем обычная (это тоже надо проверить на каждой странице независимо)
         // для этой проверки мы используем назначен ли стиль нужному элементу
 
-        // Регулярная цена зачеркнута иначе исключение
+        // Регулярная цена зачеркнута иначе исключение тэг <s>
         // Если элементу назначено свойство regular-price значит значение меньше аукционной цены. Иначе будет вызвано исключение т.к. такой элемент не найден.
         WebElement elementRegularPrice = boxProduct.findElement(By.xpath(".//s[@class='regular-price']"));
         boolean logicalRegularPrice = Utils.isLogicRegularPrice(elementRegularPrice.getCssValue("color"));
         String regularPrice = elementRegularPrice.getText();
 
-        // Аукционная цена жирная иначе исключение
+        // Аукционная цена жирная иначе исключение тэг <strong>
         // Если элементу назначено свойство campaign-price значит значение больше регулярной цены. Иначе будут вызвано исключение т.к. такой элемент не найден.
         WebElement elementCampaignPrice = boxProduct.findElement(By.xpath(".//strong[@class='campaign-price']"));
         boolean logicalCampaignPrice = Utils.isLogicCompaignPrice(elementCampaignPrice.getCssValue("color"));
