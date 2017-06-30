@@ -24,10 +24,18 @@ public class LiteCartDatabase {
     }
 
     public static int getNextCustomersId() throws SQLException {
+        return getNextId("select max(id) + 1 as id from lc_customers");
+    }
+
+    public static int getNextProductId() throws SQLException {
+        return getNextId("select max(id) + 1 as id from lc_products_info");
+    }
+
+    public static int getNextId(String sql) throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
         int id = 1;
-        String nextIdSQL = "select max(id) + 1 as id from lc_customers";
+        String nextIdSQL = sql;
 
         try {
             dbConnection = getDBConnection();
