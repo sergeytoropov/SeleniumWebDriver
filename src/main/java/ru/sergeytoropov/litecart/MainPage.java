@@ -4,12 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import ru.sergeytoropov.LiteCart;
 import ru.sergeytoropov.exceptions.LiteCartException;
 import ru.sergeytoropov.litecart.elements.CheckoutElement;
 import ru.sergeytoropov.litecart.elements.HomeElement;
+import ru.sergeytoropov.litecart.info.Product;
+import ru.sergeytoropov.utils.Utils;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author sergeytoropov
@@ -154,6 +158,17 @@ public class MainPage extends LiteCart {
         throw new LiteCartException("Страница с описанием продукта не открылась");
     }
 
+    @FindBy(xpath = "//div[@id='box-campaigns']//li[@class='product column shadow hover-light']")
+    List<WebElement> products;
+
+    public WebElement getFirstCampaignsProduct() {
+        Optional<WebElement> product = products.stream().findFirst();
+        if (product.isPresent()) {
+            return product.get();
+        }
+        throw new LiteCartException("Отсутствуют товары на главной странице в разделе campaigns");
+    }
+
     //
     // Действия
     //
@@ -165,5 +180,32 @@ public class MainPage extends LiteCart {
             return cartPage;
         }
         throw new LiteCartException("Страница корзины выбранных товаров не открылась");
+    }
+
+    public ProductPage openFirstCampaignsProduct() {
+            getFirstCampaignsProduct().click();
+            return new ProductPage(driver);
+    }
+
+    public Product getFirstCampaignsProductInfo() {
+        WebElement product = getFirstCampaignsProduct();
+        String name = product.findElement(By.xpath(".//div[@class='name']")).getText();
+
+        // акционная цена крупнее, чем обычная (это тоже надо проверить на каждой странице независимо)
+        // для этой проверки мы используем назначен ли стиль нужному элементу
+
+        // Регулярная цена зачеркнута иначе исключение
+        // Если элементу назначено свойство regular-price значит значение меньше аукционной цены. Иначе будет вызвано исключение т.к. такой элемент не найден.
+        WebElement elementRegularPrice = product.findElement(By.xpath(".//s[@class='regular-price']"));
+        boolean logicalRegularPrice = Utils.isLogicRegularPrice(elementRegularPrice.getCssValue("color"));
+        String regularPrice = elementRegularPrice.getText();
+
+        // Аукционная цена жирная иначе исключение
+        // Если элементу назначено свойство campaign-price значит значение больше регулярной цены. Иначе будут вызвано исключение т.к. такой элемент не найден.
+        WebElement elementCampaignPrice = product.findElement(By.xpath(".//strong[@class='campaign-price']"));
+        boolean logicalCampaignPrice = Utils.isLogicCompaignPrice(elementCampaignPrice.getCssValue("color"));
+        String campaignPrice = elementCampaignPrice.getText();
+
+        return new Product(name, regularPrice, campaignPrice, logicalRegularPrice, logicalCampaignPrice);
     }
 }
